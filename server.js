@@ -4,6 +4,18 @@ const path = require('path');
 
 const app = express();
 
+var spawn = require('child_process').spawn;
+const process = spawn('python', ['rec.py']);
+process.stdout.on('data', (data) => {
+  test = data.toString();
+});
+process.stderr.on('data', (data) => {
+  console.log('err results: %j', data.toString('utf8'))
+});
+process.stdout.on('end', function(){
+  console.log(test);
+});
+
 // Connect Database
 connectDB();
 
@@ -16,7 +28,7 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 
-// Serve static assets in production
+/*// Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static('client/build'));
@@ -24,8 +36,8 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
-}
+}*/
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
