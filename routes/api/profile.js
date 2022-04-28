@@ -11,6 +11,7 @@ const checkObjectId = require('../../middleware/checkObjectId');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
+const Preference = require('../../models/Preference');
 
 // @route    GET api/profile/me
 // @desc     Get current users profile
@@ -24,6 +25,10 @@ router.get('/me', auth, async (req, res) => {
     if (!profile) {
       return res.status(400).json({ msg: 'There is no profile for this user' });
     }
+    preference1 = profile.preference1;
+
+    preference = new Preference({preference1});
+    await preference.save();
 
     res.json(profile);
   } catch (err) {

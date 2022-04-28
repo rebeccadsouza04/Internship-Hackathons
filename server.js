@@ -1,11 +1,23 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
+const config = require('config');
 
 const app = express();
 
+// Connect Database
+connectDB();
+
+const Preference = require('./models/Preference');
+
+async function asyncCall() {
+const preference = await Preference.find().sort({_id:-1}).limit(1);
+pref = preference[0];
+console.log(pref.preference1);
+const temp = pref.preference1;
+
 var spawn = require('child_process').spawn;
-const process = spawn('python', ['rec.py']);
+const process = spawn('python', ['rec.py',temp]);
 process.stdout.on('data', (data) => {
   test = data.toString();
 });
@@ -16,8 +28,9 @@ process.stdout.on('end', function(){
   console.log(test);
 });
 
-// Connect Database
-connectDB();
+}
+
+asyncCall();
 
 // Init Middleware
 app.use(express.json());

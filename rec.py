@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+import sys
+
+print('First param:'+sys.argv[1]+'#')
 
 df = pd.read_csv("Internships.csv",encoding='cp1252')
 
@@ -24,10 +27,22 @@ cosine_sim = cosine_similarity(count_matrix)
 
 def get_title_from_index(index):
     return df[df.index == index]["Internship_Category"].values[0]
+def get_name_from_index(index):
+    return df[df.index == index]["Company_name"].values[0]
+def get_location_from_index(index):
+    return df[df.index == index]["location"].values[0]
+def get_date_from_index(index):
+    return df[df.index == index]["Start_Date"].values[0]
+def get_duration_from_index(index):
+    return df[df.index == index]["Duration"].values[0]
+def get_stipend_from_index(index):
+    return df[df.index == index]["Stipend"].values[0]
+def get_apply_from_index(index):
+    return df[df.index == index]["Apply_By"].values[0]
 def get_index_from_title(Internship_Category):
     return df[df.Internship_Category == Internship_Category]["index"].values[0]
 
-internship_user_likes = "Graphic Design"
+internship_user_likes = sys.argv[1]
 internship_index = get_index_from_title(internship_user_likes)
 print(internship_index)
 similar_internship = list(enumerate(cosine_sim[internship_index])) #accessing the row corresponding to given movie to find all the similarity scores for that 
@@ -38,7 +53,7 @@ i=0
 print("Top 5 similar internships to "+internship_user_likes+" are:\n")
 
 for element in sorted_similar_internships:
-    print(get_title_from_index(element[0]))
+    print(get_title_from_index(element[0]),get_name_from_index(element[0]),get_location_from_index(element[0]),get_date_from_index(element[0]),get_duration_from_index(element[0]),get_stipend_from_index(element[0]),get_apply_from_index(element[0]))
     i=i+1
     if i>5:
         break
