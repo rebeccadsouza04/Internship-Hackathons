@@ -21,7 +21,10 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "react-icons": "^4.3.1",
+    "scrollreveal": "^4.0.9",
+    "styled-components": "^5.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
