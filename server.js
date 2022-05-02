@@ -11,21 +11,21 @@ connectDB();
 const Preference = require('./models/Preference');
 
 async function asyncCall() {
-const preference = await Preference.find().sort({_id:-1}).limit(1);
-pref = preference[0];
-console.log(pref.preference1);
-const temp = pref.preference1;
+  const preference = await Preference.find().sort({_id:-1}).limit(1);
+  pref = preference[0];
+  console.log(pref.preference1);
+  const temp = pref.preference1;
 
-var spawn = require('child_process').spawn;
-const process = spawn('python', ['rec.py',temp]);
-process.stdout.on('data', (data) => {
-  test = data.toString();
-});
-process.stderr.on('data', (data) => {
-  console.log('err results: %j', data.toString('utf8'))
-});
-process.stdout.on('end', function(){
-});
+  var spawn = require('child_process').spawn;
+  const process = spawn('python', ['rec.py',temp]);
+  process.stdout.on('data', (data) => {
+    test = data.toString();
+  });
+  process.stderr.on('data', (data) => {
+    console.log('err results: %j', data.toString('utf8'))
+  });
+  process.stdout.on('end', function(){
+  });
 
 }
 
@@ -42,6 +42,7 @@ app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/internships', require('./routes/api/internship'));
 app.use('/api/recommendations', require('./routes/api/recommendation'));
 
+//Deployment on Heroku (Yet to complete)
 /*// Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
