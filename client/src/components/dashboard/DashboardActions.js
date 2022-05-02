@@ -17,6 +17,9 @@ const DashboardActions = () => {
       <Link to='/internships' className='btn btn-light'>
         <i className='fas fa-tasks text-primary' /> View Internships
       </Link>
+      <Link to='/hackathons' className='btn btn-light'>
+        <i className='fas fa-desktop text-primary' /> View Hackathons
+      </Link>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import profile from './profile';
 import post from './post';
 import internship from './internship';
 import recommendation from './recommendation';
+import hackathon from './hackathon';
 
 export default combineReducers({
   alert,
@@ -12,5 +13,6 @@ export default combineReducers({
   profile,
   post,
   internship,
-  recommendation
+  recommendation,
+  hackathon
 });
