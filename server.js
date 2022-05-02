@@ -41,6 +41,7 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 app.use('/api/internships', require('./routes/api/internship'));
 app.use('/api/recommendations', require('./routes/api/recommendation'));
+app.use('/api/hackathons', require('./routes/api/hackathon'));
 
 //Deployment on Heroku (Yet to complete)
 /*// Serve static assets in production
