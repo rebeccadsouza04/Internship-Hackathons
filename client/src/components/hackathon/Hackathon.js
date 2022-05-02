@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import HackathonItem from './HackathonItem'
 import { getHackathons } from '../../actions/hackathon'
-import { Link } from 'react-router-dom';
 
 const Hackathon = ({ getHackathons, hackathon: { hackathons }}) => {
   useEffect(() => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import temp from '../../img/temp.jpg';
-import {Link} from 'react-router-dom';
 
 const InternshipItem = ({
     internship: { Internship_Category, Company_name, location, Start_Date, Duration, Stipend, Apply_By }

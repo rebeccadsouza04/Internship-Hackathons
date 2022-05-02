@@ -12,7 +12,7 @@ const HackathonItem = ({
             <div className='float-child'>
   <div className='card-container'>
     <div className="image-container">
-      <img src={hack} />
+      <img src={hack} alt='' />
     </div>
     <div className="card-content">
     <div className="card-title">
