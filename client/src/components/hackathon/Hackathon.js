@@ -15,8 +15,6 @@ const Hackathon = ({ getHackathons, hackathon: { hackathons }}) => {
         <div className="title">
           <h1>HACKATHONS:</h1>
           </div>
-
-      <br></br><h1 className="large text-primary">Hackathons</h1>
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p>
