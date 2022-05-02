@@ -21,11 +21,11 @@ router.get('/', auth, async (req, res) => {
 // @desc     Get specific internship
 // @access   Public
 router.get(
-    '/:internship_category', auth,
-    async ({ params: { internship_category } }, res) => {
+    '/:id', auth,
+    async ({ params: { id } }, res) => {
         try {
         const internships = await Internship.find({
-            Internship_Category: internship_category
+            Internship_Category: id
         })
         return res.json(internships);
         } catch (err) {

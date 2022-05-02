@@ -17,6 +17,7 @@ import NotFound from './components/layout/NotFound';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { LOGOUT } from './actions/types';
 import Internships from './components/internship/Internship';
+import Category from './components/internship/InternshipCategory';
 
 // Redux
 import { Provider } from 'react-redux';
@@ -76,6 +77,7 @@ const App = () => {
           />
           <Route path="posts" element={<PrivateRoute component={Posts} />} />
           <Route path="internships" element={<PrivateRoute component={Internships} />} />
+          <Route path="internships/:id" element={<PrivateRoute component={Category} />} />
           <Route path="posts/:id" element={<PrivateRoute component={Post} />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>

@@ -1,6 +1,7 @@
 import {
     GET_INTERNSHIPS,
-    INTERNSHIP_ERROR
+    INTERNSHIP_ERROR,
+    GET_CATEGORY
   } from '../actions/types';
   
   const initialState = {
@@ -14,6 +15,7 @@ import {
   
     switch (type) {
       case GET_INTERNSHIPS:
+      case GET_CATEGORY:
         return {
           ...state,
           internships: payload,

@@ -2,13 +2,14 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import InternshipItem from './InternshipItem'
-import { getInternships } from '../../actions/internship'
-import { Link } from 'react-router-dom';
+import { getCategory } from '../../actions/internship'
+import { Link, useParams } from 'react-router-dom';
 
-const Internship = ({ getInternships, internship: {internships }}) => {
+const InternshipCategory = ({ getCategory, internship: {internships }}) => {
+    const { id } = useParams();
   useEffect(() => {
-    getInternships();
-  }, [getInternships]);
+    getCategory(id);
+  }, [getCategory, id]);
 
   const checkList = ["Web Development", "Graphic Design", "Mobile App Development"];
     
@@ -42,8 +43,8 @@ const Internship = ({ getInternships, internship: {internships }}) => {
   )
 }
 
-Internship.propTypes = {
-  getInternships: PropTypes.func.isRequired,
+InternshipCategory.propTypes = {
+  getCategory: PropTypes.func.isRequired,
   internship: PropTypes.object.isRequired
 }
 
@@ -52,4 +53,4 @@ const mapStateToProps = (state) => ({
 });
 
 
-export default connect(mapStateToProps, {getInternships})(Internship);
+export default connect(mapStateToProps, {getCategory})(InternshipCategory);
