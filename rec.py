@@ -3,6 +3,12 @@ import numpy as np
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import sys
+from pymongo import MongoClient
+
+client = MongoClient("mongodb+srv://rebecca:1234@projectdata.obanm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+
+db = client.get_database('myFirstDatabase')
+records = db.recommendations
 
 print('First param:'+sys.argv[1]+'#')
 
@@ -53,7 +59,6 @@ i=0
 print("Top 5 similar internships to "+internship_user_likes+" are:\n")
 
 df1 = pd.DataFrame()
-index = []
 category = []
 companyname = []
 locationname = []
@@ -65,18 +70,18 @@ apply_by = []
 i = 1
 
 for element in sorted_similar_internships:
-    index.append(i)
-    category.append(get_title_from_index(element[0]))
-    companyname.append(get_name_from_index(element[0]))
-    locationname.append(get_location_from_index(element[0]))
-    start_date.append(get_date_from_index(element[0]))
-    duration.append(get_duration_from_index(element[0]))
-    stipend.append(get_stipend_from_index(element[0]))
-    apply_by.append(get_apply_from_index(element[0]))
+    new_recommendation = {
+        'Internship_Category': get_title_from_index(element[0]),
+        'Company_name' : get_name_from_index(element[0]),
+        'location' : get_location_from_index(element[0]),
+        'Start_Date' : get_date_from_index(element[0]),
+        'Duration' : get_duration_from_index(element[0]),
+        'Stipend' : get_stipend_from_index(element[0]),
+        'Apply_By' : get_apply_from_index(element[0])
+    }
+    
+    records.insert_one(new_recommendation)
 
     i=i+1
     if i>5:
         break
-
-df1 = pd.DataFrame({'Index': index, 'Internship Category': category, 'Company name': companyname, 'location': locationname, 'Start Date': start_date, 'Duration': duration, 'Stipend': stipend, 'Apply By': apply_by})
-df1.to_csv('client\public\\recommendations.csv', index=False, encoding='utf-8')

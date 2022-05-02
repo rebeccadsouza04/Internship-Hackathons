@@ -122,7 +122,7 @@ const ProfileForm = ({
             <option>* Select Preference 1</option>
             <option value="Web Development">Web Development</option>
             <option value="App Development">App Development</option>
-            <option value="Graphics Design">Graphics Design</option>
+            <option value="Graphic Design">Graphic Design</option>
             <option value="Other">Other</option>
           </select>
           <small className="form-text">

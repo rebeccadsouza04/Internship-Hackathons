@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 
 const Internship = require('../../models/Internships');
 
 // @route    GET api/internship
 // @desc     Get all internships
 // @access   Private
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
     try {
         const internships = await Internship.find();
         res.json(internships);
@@ -20,7 +21,7 @@ router.get('/', async (req, res) => {
 // @desc     Get specific internship
 // @access   Public
 router.get(
-    '/:internship_category',
+    '/:internship_category', auth,
     async ({ params: { internship_category } }, res) => {
         try {
         const internships = await Internship.find({

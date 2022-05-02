@@ -25,7 +25,6 @@ process.stderr.on('data', (data) => {
   console.log('err results: %j', data.toString('utf8'))
 });
 process.stdout.on('end', function(){
-  console.log(test);
 });
 
 }
@@ -40,7 +39,8 @@ app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
-app.use('/api/internship', require('./routes/api/internship'));
+app.use('/api/internships', require('./routes/api/internship'));
+app.use('/api/recommendations', require('./routes/api/recommendation'));
 
 /*// Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

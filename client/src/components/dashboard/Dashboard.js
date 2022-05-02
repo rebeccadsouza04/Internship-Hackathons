@@ -6,26 +6,21 @@ import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
+import { getRecommendations } from '../../actions/recommendation';
+import RecommendationItem from './RecommendationItem';
 
 const Dashboard = ({
     getCurrentProfile,
     deleteAccount,
+    getRecommendations,
     auth: { user },
-    profile: { profile }
+    profile: { profile },
+    recommendation: { recommendations }
 }) => {
     useEffect(() => {
         getCurrentProfile();
-    }, [getCurrentProfile]);
-
-    const [ text, setText ] = useState();
-
-    const load = function(){
-        fetch( './recommendations.csv' )
-            .then( response => response.text() )
-            .then( responseText => {
-                setText( responseText );
-            })
-    };
+        getRecommendations();
+    }, [getCurrentProfile], [getRecommendations]);
 
     return (
         <section className="container">
@@ -54,9 +49,11 @@ const Dashboard = ({
             </>
         )}
         <div>
-            <button onClick={ load }>load</button>
-            <h2>text:</h2>
-            <pre>{ text }</pre>
+        <div className="posts">
+        {recommendations.map((recommendation) => (
+          <RecommendationItem key={recommendation._id} recommendation={recommendation} />
+        ))}
+      </div>
         </div>
         </section>
     );
@@ -64,17 +61,20 @@ const Dashboard = ({
 
 Dashboard.propTypes = {
     getCurrentProfile: PropTypes.func.isRequired,
+    getRecommendations: PropTypes.func.isRequired,
     deleteAccount: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    profile: PropTypes.object.isRequired
+    profile: PropTypes.object.isRequired,
+    recommendation: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
     auth: state.auth,
-    profile: state.profile
+    profile: state.profile,
+    recommendation: state.recommendation
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount, getRecommendations })(
     Dashboard
 );
 
