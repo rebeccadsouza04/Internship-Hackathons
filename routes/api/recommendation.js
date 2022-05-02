@@ -9,7 +9,7 @@ const Recommendation = require('../../models/Recommendation');
 // @access   Private
 router.get('/', auth, async (req, res) => {
     try {
-        const recommendations = await Recommendation.find();
+        const recommendations = await Recommendation.find().sort({_id:-1}).limit(5);
         res.json(recommendations);
     } catch (err) {
         console.error(err.message);
