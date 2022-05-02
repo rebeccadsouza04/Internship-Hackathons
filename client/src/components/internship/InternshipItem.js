@@ -17,17 +17,17 @@ const InternshipItem = ({
     <ul>
       <li className='text-primary'>
         <p><i className='fas fa-check' /> {Start_Date}</p>
-        <p><i className='fas fa-check' /> {Duration}</p>
+        <p><i className='fas fa-clock' /> Duration: {Duration}</p>
       </li>
   </ul><br></br>
-    <Link to={`/profile}`} className='btn btn-primary'>
-      View Profile
-    </Link>
+    <button className='btn btn-primary'>
+      Apply Now
+    </button>
   </div>
   <ul>
       <li className='text-primary'><br></br>
-      <br></br><p><i className='fas fa-check' /> {Stipend}</p>
-        <p><i className='fas fa-check' /> {Apply_By}</p>
+      <br></br><p><i className='fas fa-money-bill' /> Stipend: {Stipend}</p>
+        <p><i className='fas fa-calendar' /> Apply By: {Apply_By}</p>
       </li>
   </ul>
 </div>

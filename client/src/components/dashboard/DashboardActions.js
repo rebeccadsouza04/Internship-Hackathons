@@ -5,7 +5,7 @@ const DashboardActions = () => {
 
   return (
     <div className='dash-buttons'>
-      <Link to='/edit-profile' className='btn btn-light'>
+      <Link to='/edit-profile' className='btn btn-warning'>
         <i className='fas fa-user-circle text-primary' /> Edit Profile
       </Link>
       <Link to='/add-experience' className='btn btn-light'>
@@ -15,7 +15,7 @@ const DashboardActions = () => {
         <i className='fas fa-graduation-cap text-primary' /> Add Education
       </Link>
       <Link to='/internships' className='btn btn-light'>
-        <i className='fas fa-graduation-cap text-primary' /> View Internships
+        <i className='fas fa-tasks text-primary' /> View Internships
       </Link>
     </div>
   );

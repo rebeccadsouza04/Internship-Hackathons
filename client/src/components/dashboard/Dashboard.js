@@ -31,8 +31,10 @@ const Dashboard = ({
         {profile !== null ? (
             <>
             <DashboardActions />
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin: '25px'}}>
             <Experience experience={profile.experience} />
             <Education education={profile.education} />
+            </div>
 
             <div className="my-2">
                 <button className="btn btn-danger" onClick={() => deleteAccount()}>
@@ -50,6 +52,18 @@ const Dashboard = ({
         )}
         <div>
         <div className="posts">
+            <br></br>
+            <ul>
+                <li>
+                <h1>RECOMMENDATIONS</h1>
+                </li>
+                <li>
+                    <Link to="/internships" className="btn btn-success my-1">
+                    View more internships
+                    </Link>
+                </li>
+            </ul>
+            
         {recommendations.map((recommendation) => (
           <RecommendationItem key={recommendation._id} recommendation={recommendation} />
         ))}
