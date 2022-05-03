@@ -20,12 +20,12 @@ const HackathonItem = ({
     </div>
     <div className="card-body">
     <ul>
-      <li className='text-warning'>
-        <p><i className='fas fa-bell' /> Status: {Status}</p><br></br>
-        <p><i className='fas fa-clock' /> Starts: {Start_Date}</p>
-        <p><i className='fas fa-clock' /> Ends: {End_Date}</p><br></br>
-        <p><i className='fas fa-user' /> Number of Participants: {Participants_No}</p>
-        <p><i className='fas fa-clock' /> Mode: {Mode}</p>
+      <li className='text-dark'>
+        <p><small><i className='fas fa-bell' /> Status: {Status}</small></p>
+        <p><small><i className='fas fa-clock' /> Starts: {Start_Date}</small></p>
+        <p><small><i className='fas fa-clock' /> Ends: {End_Date}</small></p>
+        <p><small><i className='fas fa-user' /> Number of Participants: {Participants_No}</small></p>
+        <p><small><i className='fas fa-clock' /> Mode: {Mode}</small></p>
       </li>
   </ul>
     </div>

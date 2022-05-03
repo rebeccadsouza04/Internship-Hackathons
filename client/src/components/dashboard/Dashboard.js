@@ -31,7 +31,7 @@ const Dashboard = ({
         {profile !== null ? (
             <>
             <DashboardActions />
-            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin: '25px'}}>
+            <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', margin: '15px'}}>
             <Experience experience={profile.experience} />
             <Education education={profile.education} />
             </div>
@@ -41,16 +41,7 @@ const Dashboard = ({
                 <i className="fas fa-user-minus" /> Delete My Account 
                 </button>
             </div>
-            </>
-        ) : (
-            <>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create-profile" className="btn btn-primary my-1">
-                Create Profile
-            </Link>
-            </>
-        )}
-        <div>
+            <div>
         <div className="posts">
             <br></br>
             <ul>
@@ -69,6 +60,15 @@ const Dashboard = ({
         ))}
       </div>
         </div>
+            </>
+        ) : (
+            <>
+            <p>You have not yet setup a profile, please add some info</p>
+            <Link to="/create-profile" className="btn btn-primary my-1">
+                Create Profile
+            </Link>
+            </>
+        )}
         </section>
     );
 };
