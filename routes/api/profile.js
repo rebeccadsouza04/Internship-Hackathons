@@ -3,6 +3,7 @@ const axios = require('axios');
 const config = require('config');
 const router = express.Router();
 const auth = require('../../middleware/auth');
+const request = require('request');
 const { check, validationResult } = require('express-validator');
 // bring in normalize to give us a proper url, regardless of what user entered
 const normalize = require('normalize-url');
@@ -12,6 +13,7 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 const Post = require('../../models/Post');
 const Preference = require('../../models/Preference');
+const { response } = require('express');
 
 // @route    GET api/profile/me
 // @desc     Get current users profile
@@ -270,19 +272,24 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 // @access   Public
 router.get('/github/:username', async (req, res) => {
   try {
-    const uri = encodeURI(
-      `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientID')}&client_secret=${config.get('githubSecret')}`
-    );
-    const headers = {
-      'user-agent': 'node.js',
-      Authorization: `token ${config.get('githubToken')}`
+    const options = {
+      uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientID')}&client_secret=${config.get('githubSecret')}`,
+      method: 'GET',
+      headers: {'user-agent' : 'node.js'}
     };
+    
+    request(options, (error, response, body) => {
+      if(error) console.log(error);
 
-    const gitHubResponse = await axios.get(uri, { headers });
-    return res.json(gitHubResponse.data);
+      if(response.statusCode != 200){
+        return res.status(400).json({ msg: 'No Github profile found'});
+      }
+
+      res.json(JSON.parse(body));
+    })
   } catch (err) {
     console.error(err.message);
-    return res.status(404).json({ msg: 'No Github profile found' });
+    return res.status(500).send('Server Error');
   }
 });
 
